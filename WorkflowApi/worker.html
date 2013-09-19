@@ -47,53 +47,10 @@
                 if (!window.GoogleTTS) {
                     $("#error").text("Sorry, the google-tts script couldn't be loaded.");
                     return;
-                } else {
-                    var HTML = '\
-            <div> \
-                <label for="demo_language">Language:</label> \
-                <select id="demo_language"> \
-                   <option value="" disabled="disabled">(Select language)</option> \
-                </select> \
-            </div> \
-            <div> \
-                <label for="demo_text">Text:</label> \
-                <textarea rows="5" cols="60" id="demo_text" /> \
-            </div> \
-            <button id="demo_play">Play!</button> \
-            ';
-                    $("#tts_demo").html(HTML);
                 }
 
                 var googleTTS = new window.GoogleTTS();
 
-                // setup language options
-                $.each(googleTTS.languages(), function (key, value) {
-                    $('#demo_language').append('<option value="' + key + '">' + value + '</option>');
-                });
-
-                // play
-                $("#demo_play").click(function () {
-                    googleTTS.play($("#demo_text").val(), $("#demo_language").val(), function (err) {
-                        if (err) {
-                            $("#error").text(err.toString());
-                        }
-
-                        console.log('Finished playing');
-                    });
-                });
-
-                // defaults
-                $("#demo_language").val('zh-CN');
-                $("#demo_text").val('中文');
-
-                // char count
-                $("#demo_text").keyup(function () {
-                    console.log('test');
-                    var chars = $("#demo_text").val();
-                    $("label[for=demo_text]").text("Text: (" + chars.length + "):");
-                });
-
-                // available player
                 googleTTS.getPlayer(function (err, player) {
                     if (err) {
                         return $("#error").text(err.toString());
@@ -104,6 +61,10 @@
                     } else {
                         $("#tts_player").text('None available');
                     }
+                });
+
+                googleTTS.play("Hello, world", "en", function (err) {
+                    console.log('Finished playing');
                 });
             }
         });
