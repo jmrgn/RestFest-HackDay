@@ -61,8 +61,8 @@ function tock() {
         return;
     }
     var task = queue.shift();
-    log("Following " + task.href);
-    $.getJSON(task.href, function (data) {
+    log("Following " + 'http://10.0.12.137:1234' + task.href);
+    $.getJSON('http://10.0.12.137:1234' + task.href, function (data) {
         if (data.type != "http://mogsie.com/2013/workflow/colors") {
             tock();
             return;
