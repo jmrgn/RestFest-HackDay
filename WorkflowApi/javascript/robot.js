@@ -21,6 +21,13 @@ function tick() {
     });
 }
 
+function localtest(msg) {
+    console.log('here');
+    $.post('speech', {
+        words : msg
+    });
+}
+
 function tock() {
     console.log("tock");
     if (queue.length == 0) {
@@ -46,12 +53,19 @@ function tock() {
             console.log(data.input.text);
             $.post('http://10.0.12.137:1234' + data.start);
             try {
+                var player = window.GoogleTTS();
                 player.play(data.input.text, "en", function (err) {
                     console.log(err);
                     console.log('Finished playing');
                 });
             } catch (e) {
-                $.post('http://10.0.12.137:1234' + data.fail);
+                console.log("here");
+                try {
+                    console.log("words");
+                    localtest(data.input.text);
+                } catch (ee) {
+                    $.post('http://10.0.12.137:1234' + data.fail);
+                }
             }
             $.post('http://10.0.12.137:1234' + data.complete);
         }
