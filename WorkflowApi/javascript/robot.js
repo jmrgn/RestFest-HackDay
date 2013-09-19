@@ -4,11 +4,9 @@ function log(text) {
 }
 
 var speed = 200;
-// The next URL to retrieve
 var next = undefined;
 var queue = [];
 
-// Follow the "next" document, add them to the queue, and "tock()"
 function tick() {
     if (next === undefined) {
         log("Done.");
@@ -23,7 +21,6 @@ function tick() {
     });
 }
 
-// figure out what to do...
 function tock() {
     console.log("tock");
     if (queue.length == 0) {
@@ -47,11 +44,12 @@ function tock() {
             console.log(data);
             var player = new window.GoogleTTS()
             console.log(data.input.text);
+            $.post('http://10.0.12.137:1234' + data.start);
             player.play(data.input.text, "en", function (err) {
                 console.log(err);
                 console.log('Finished playing');
             });
+            $.post('http://10.0.12.137:1234' + data.complete);
         }
-
     });
 }
