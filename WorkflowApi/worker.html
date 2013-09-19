@@ -22,57 +22,32 @@
 
 <body>
 
-<h1>Demo of Google Text-to-Speech API</h1>
-
 <div id="tts_demo"></div>
-
 <div id="error"></div>
-
-<p><strong>Player: </strong><span id="tts_player"></span></p>
-
-<footer>
-    <p>Source: <a href="https://github.com/hiddentao/google-tts">https://github.com/hiddentao/google-tts</a></p>
-    <p>Developed by <a href="http://www.hiddentao.com/archives/2012/04/01/google-tts-a-javascript-api-for-google-text-to-speech-engine/">Ramesh Nair</a>, based on code by <a href="http://weston.ruter.net/projects/google-tts/">Weston Ruter</a>.</p>
-</footer>
+<div id="log"></div>
 
 <script type="text/javascript" src="javascript/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="javascript/google-tts.js"></script>
 <script type="text/javascript" src="javascript/soundmanager2.js"></script>
 <script type="text/javascript" src="javascript/play.js"></script>
+<script src="javascript/robot.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         soundManager.setup({
             url: '/',
             preferFlash: false,
             onready: function () {
+
                 if (!window.GoogleTTS) {
                     $("#error").text("Sorry, the google-tts script couldn't be loaded.");
                     return;
                 }
 
-                var googleTTS = new window.GoogleTTS();
-
-                googleTTS.getPlayer(function (err, player) {
-                    if (err) {
-                        return $("#error").text(err.toString());
-                    }
-
-                    if (player) {
-                        $("#tts_player").text(player.toString());
-                    } else {
-                        $("#tts_player").text('None available');
-                    }
-                });
-
-                googleTTS.play("Hello, world", "en", function (err) {
-                    console.log('Finished playing');
-                });
+                next = 'http://10.0.12.137:1234/say/input-queue';
+                tick();
             }
         });
     });
-    
 </script>
-
-
 </body>
 </html>
