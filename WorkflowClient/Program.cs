@@ -11,18 +11,13 @@ using System.Xml.Serialization;
 
 namespace WorkflowClient
 {
-    public class StringMessage
-    {
-        public string String { get; set; }
-    }
-
     class Program
     {
         static void Main(string[] args)
         {
             if (!MessageQueue.Exists(@"MTL492PWW1\PRIVATE$\restfest-speech"))
             {
-                Console.WriteLine("shouldexist");
+                throw new ApplicationException("Queue should exist");
             }
 
             var queue = new MessageQueue(@"MTL492PWW1\PRIVATE$\restfest-speech");

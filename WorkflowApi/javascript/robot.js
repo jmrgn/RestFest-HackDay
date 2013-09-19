@@ -57,6 +57,7 @@ function tock() {
                 player.play(data.input.text, "en", function (err) {
                     console.log(err);
                     console.log('Finished playing');
+                    $("#t").text(data.input.text);
                 });
             } catch (e) {
                 console.log("here");

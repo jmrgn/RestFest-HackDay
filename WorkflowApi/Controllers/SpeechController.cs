@@ -14,7 +14,7 @@ namespace WorkflowApi.Controllers
         {
             var queue = new MessageQueue(@"MTL492PWW1\PRIVATE$\restfest-speech");
             queue.Send(words);
-            return View();
+            return new EmptyResult();
         }
     }
 }
