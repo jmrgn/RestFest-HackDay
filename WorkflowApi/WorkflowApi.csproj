@@ -243,6 +243,7 @@
     <Content Include="javascript\Gruntfile.js" />
     <Content Include="javascript\jquery-1.9.1.min.js" />
     <Content Include="javascript\play.js" />
+    <Content Include="javascript\robot.js" />
     <Content Include="javascript\soundmanager2.js" />
     <Content Include="worker.html" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
