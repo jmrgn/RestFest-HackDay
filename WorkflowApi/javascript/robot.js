@@ -45,10 +45,14 @@ function tock() {
             var player = new window.GoogleTTS()
             console.log(data.input.text);
             $.post('http://10.0.12.137:1234' + data.start);
-            player.play(data.input.text, "en", function (err) {
-                console.log(err);
-                console.log('Finished playing');
-            });
+            try {
+                player.play(data.input.text, "en", function (err) {
+                    console.log(err);
+                    console.log('Finished playing');
+                });
+            } catch (e) {
+                $.post('http://10.0.12.137:1234' + data.fail);
+            }
             $.post('http://10.0.12.137:1234' + data.complete);
         }
     });
